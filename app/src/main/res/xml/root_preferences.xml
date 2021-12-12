@@ -1,0 +1,41 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="天气">
+        <Preference
+            app:key="weather_source"
+            app:summary="天气相关配置请从dev.qweather.com中自行注册获取"
+            app:title="数据来源：和风天气" />
+        <EditTextPreference
+            app:key="weather_public_id"
+            app:title="和风天气API Public ID" />
+        <EditTextPreference
+            app:key="weather_api_key"
+            app:title="和风天气API Key" />
+        <Preference
+            app:key="weather_location"
+            app:summary="尚未选择"
+            app:title="所在城市" />
+        <ListPreference
+            app:defaultValue="600000"
+            app:entries="@array/refresh_entries"
+            app:entryValues="@array/refresh_values"
+            app:key="weather_refresh"
+            app:title="刷新间隔"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="其他">
+
+        <Preference
+            app:key="system_settings"
+            app:title="系统设置"
+            app:summary="音量大小WIFI亮度啥的你自己来吧！返回我还没想到咋整~"/>
+        <Preference
+            app:key="about"
+            app:title="关于"
+            app:summary="原作者:@bqmz001"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

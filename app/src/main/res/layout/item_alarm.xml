@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        app:cardBackgroundColor="@color/grey50"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="00"
+                android:textSize="56sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00"
+                android:textSize="56sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_hour" />
+
+            <LinearLayout
+                android:id="@+id/ll_dot_list_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_minute">
+
+                <View
+                    android:id="@+id/dot1"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/bg_dot" />
+
+                <View
+                    android:id="@+id/dot2"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/bg_dot" />
+
+                <View
+                    android:id="@+id/dot3"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/bg_dot" />
+
+                <View
+                    android:id="@+id/dot4"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/bg_dot" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_dot_list_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_dot_list_1">
+
+                <View
+                    android:id="@+id/dot5"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/bg_dot" />
+
+                <View
+                    android:id="@+id/dot6"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/bg_dot" />
+
+                <View
+                    android:id="@+id/dot7"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/bg_dot" />
+
+                <View
+                    android:id="@+id/dot8"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_margin="1dp"
+                    android:background="@drawable/bg_dot" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line_enabled"
+                android:layout_width="48dp"
+                android:layout_height="4dp"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

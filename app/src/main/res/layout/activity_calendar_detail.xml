@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".calendar.CalendarDetailActivity">
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/iv_more"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:visibility="invisible"
+        android:layout_marginEnd="4dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_baseline_restore_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+        app:layout_constraintEnd_toStartOf="@+id/iv_more"
+        app:layout_constraintStart_toEndOf="@+id/iv_back"
+        app:layout_constraintTop_toTopOf="@+id/iv_back" />
+
+    <TextView
+        android:id="@+id/tv_lunar_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_date"
+        app:layout_constraintStart_toStartOf="@+id/tv_date"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_wuxing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/iv_more"
+        app:layout_constraintStart_toEndOf="@+id/iv_back"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lunar_date" />
+
+    <TextView
+        android:id="@+id/tv_chongsha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_wuxing"
+        app:layout_constraintStart_toStartOf="@+id/tv_wuxing"
+        app:layout_constraintTop_toBottomOf="@+id/tv_wuxing" />
+
+    <TextView
+        android:id="@+id/tv_pengzu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toEndOf="@+id/tv_chongsha"
+        app:layout_constraintStart_toStartOf="@id/tv_chongsha"
+        app:layout_constraintTop_toBottomOf="@+id/tv_chongsha" />
+
+    <TextView
+        android:id="@+id/tv_shen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_pengzu"
+        app:layout_constraintStart_toStartOf="@id/tv_pengzu"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pengzu" />
+
+    <TextView
+        android:id="@+id/tv_yi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/green500"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_shen"
+        app:layout_constraintStart_toStartOf="@id/tv_shen"
+        app:layout_constraintTop_toBottomOf="@+id/tv_shen" />
+
+    <TextView
+        android:id="@+id/tv_ji"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/red700"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_yi"
+        app:layout_constraintStart_toStartOf="@id/tv_yi"
+        app:layout_constraintTop_toBottomOf="@+id/tv_yi" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2021-12-31" />
+
+    <ImageView
+        android:id="@+id/iv_weather_icon_day"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_time"
+        app:layout_constraintStart_toStartOf="@+id/tv_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+
+    <TextView
+        android:id="@+id/tv_temp_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_weather_icon_day"
+        app:layout_constraintStart_toStartOf="@+id/iv_weather_icon_day"
+        app:layout_constraintTop_toBottomOf="@+id/iv_weather_icon_day"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        tools:text="-99°C" />
+
+    <ImageView
+        android:id="@+id/iv_weather_icon_night"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_temp_day"
+        app:layout_constraintStart_toStartOf="@+id/tv_temp_day"
+        app:layout_constraintTop_toBottomOf="@+id/tv_temp_day" />
+
+
+    <TextView
+        android:id="@+id/tv_temp_night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_weather_icon_night"
+        app:layout_constraintStart_toStartOf="@+id/iv_weather_icon_night"
+        app:layout_constraintTop_toBottomOf="@+id/iv_weather_icon_night"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        tools:text="-99°C" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".weather.WeatherActivity">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_more"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_baseline_restore_24"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="山西省 太原市 小店区"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_back"
+        app:layout_constraintEnd_toStartOf="@+id/iv_more"
+        app:layout_constraintStart_toEndOf="@+id/iv_back"
+        app:layout_constraintTop_toTopOf="@+id/iv_more" />
+
+    <ImageView
+        android:id="@+id/iv_weather_icon"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_back" />
+
+    <TextView
+        android:id="@+id/tv_temp_actual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/black"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_weather_icon"
+        app:layout_constraintStart_toEndOf="@+id/iv_weather_icon"
+        tools:text="-99°C" />
+
+    <TextView
+        android:id="@+id/tv_split"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="/"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_temp_actual"
+        app:layout_constraintStart_toEndOf="@+id/tv_temp_actual"
+        app:layout_constraintTop_toTopOf="@+id/tv_temp_actual" />
+
+    <TextView
+        android:id="@+id/tv_temp_feel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/black"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_split"
+        app:layout_constraintStart_toEndOf="@+id/tv_split"
+
+        tools:text="-99°C" />
+
+    <TextView
+        android:id="@+id/tv_temp_feel_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="体感温度"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_temp_feel"
+        app:layout_constraintStart_toStartOf="@+id/tv_temp_feel" />
+
+    <TextView
+        android:id="@+id/tv_temp_actual_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="实际温度"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_temp_actual"
+        app:layout_constraintStart_toStartOf="@+id/tv_temp_actual" />
+
+    <TextView
+        android:id="@+id/tv_wind_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16sp"
+        android:text="风向"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_wet_hint"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_wet_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="湿度"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rain_hint"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_wind_hint"
+        app:layout_constraintTop_toTopOf="@+id/tv_wind_hint" />
+
+    <TextView
+        android:id="@+id/tv_rain_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="降水量"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_wet_hint"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pressure_hint"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_wet_hint"
+        app:layout_constraintTop_toTopOf="@+id/tv_wet_hint" />
+
+    <TextView
+        android:id="@+id/tv_pressure_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="大气压强"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rain_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_rain_hint"
+        app:layout_constraintTop_toTopOf="@+id/tv_rain_hint" />
+
+    <TextView
+        android:id="@+id/tv_wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_wind_hint"
+        app:layout_constraintEnd_toEndOf="@+id/tv_wind_hint"
+        app:layout_constraintStart_toStartOf="@+id/tv_wind_hint"
+        tools:text="3-4级\n西北风" />
+
+    <TextView
+        android:id="@+id/tv_wet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_wet_hint"
+        app:layout_constraintEnd_toEndOf="@+id/tv_wet_hint"
+        app:layout_constraintStart_toStartOf="@+id/tv_wet_hint"
+        tools:text="39\n%" />
+
+    <TextView
+        android:id="@+id/tv_rain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_rain_hint"
+        app:layout_constraintEnd_toEndOf="@+id/tv_rain_hint"
+        app:layout_constraintStart_toStartOf="@+id/tv_rain_hint"
+        tools:text="9999\n毫米" />
+
+    <TextView
+        android:id="@+id/tv_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_pressure_hint"
+        app:layout_constraintEnd_toEndOf="@+id/tv_pressure_hint"
+        app:layout_constraintStart_toStartOf="@+id/tv_pressure_hint"
+        tools:text="9999\nmPa" />
+
+    <TextView
+        android:id="@+id/tv_24hour_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:padding="6dp"
+        android:text="24小时预报>"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_temp_feel"
+        app:layout_constraintTop_toTopOf="@+id/tv_temp_feel" />
+
+    <TextView
+        android:id="@+id/tv_7day_weather"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="6dp"
+        android:text="7天预报>"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_temp_feel"
+        app:layout_constraintEnd_toEndOf="@+id/tv_24hour_weather"
+        app:layout_constraintStart_toStartOf="@+id/tv_24hour_weather"
+        app:layout_constraintTop_toBottomOf="@+id/tv_24hour_weather" />
+</androidx.constraintlayout.widget.ConstraintLayout>
