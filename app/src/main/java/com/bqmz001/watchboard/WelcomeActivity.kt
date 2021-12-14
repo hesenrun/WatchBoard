@@ -18,8 +18,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.litepal.LitePal
+import org.litepal.extension.saveAll
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.lang.StringBuilder
 
 class WelcomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityWelcomeBinding
@@ -58,7 +60,7 @@ class WelcomeActivity : AppCompatActivity() {
             Hawk.put("qweather_api_key", binding.etApiKey.text.toString())
             Hawk.put("refresh", 600000)
             Hawk.put("init", true)
-            val app=application as App
+            val app = application as App
             app.initQWeather()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
@@ -87,14 +89,17 @@ class WelcomeActivity : AppCompatActivity() {
         popup.show()
         lifecycleScope.launch {
             val list = withContext(Dispatchers.IO) {
-                val inputReader = InputStreamReader(getResources().getAssets().open("city.json"));
-                val bufReader = BufferedReader(inputReader);
-                var line:String?=""
-                var result = "";
-                while ((bufReader.readLine().also { line = it }) != null) {
-                    result += line + "\n";
+                val inputReader =
+                    InputStreamReader(getResources().getAssets().open("city.json"), "UTF-8")
+                val buffer = CharArray(2048)
+                val builder = StringBuilder()
+                while (true) {
+                    val rsz: Int = inputReader.read(buffer, 0, buffer.size)
+                    if (rsz < 0) break
+                    builder.append(buffer, 0, rsz)
                 }
-                inputReader.close();
+                inputReader.close()
+                val result = builder.toString()
 
                 val gson = Gson()
                 gson.fromJson(
@@ -104,10 +109,7 @@ class WelcomeActivity : AppCompatActivity() {
             }
 
             val result = withContext(Dispatchers.IO) {
-                for (i in list) {
-                    i.save()
-                }
-                true
+                list.saveAll()
             }
             popup.dismiss()
 

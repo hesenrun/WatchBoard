@@ -20,6 +20,9 @@ import com.qweather.sdk.bean.base.Code
 import com.qweather.sdk.bean.weather.WeatherNowBean
 import com.qweather.sdk.view.QWeather
 import org.joda.time.DateTime
+import android.os.PowerManager
+import android.os.PowerManager.WakeLock
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,6 +54,10 @@ class MainActivity : AppCompatActivity() {
         registerReceiver(receiver, filter)
         refreshTime()
         refreshAlarm(this)
+
+        val pm = getSystemService(POWER_SERVICE) as PowerManager
+        val wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"WatchBoard:Lock")
+        wl.acquire()
     }
 
     override fun onDestroy() {
