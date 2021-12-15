@@ -1,9 +1,12 @@
 package com.bqmz001.watchboard
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
@@ -22,6 +25,7 @@ import com.qweather.sdk.view.QWeather
 import org.joda.time.DateTime
 import android.os.PowerManager
 import android.os.PowerManager.WakeLock
+import android.provider.Settings
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,9 +59,8 @@ class MainActivity : AppCompatActivity() {
         refreshTime()
         refreshAlarm(this)
 
-        val pm = getSystemService(POWER_SERVICE) as PowerManager
-        val wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"WatchBoard:Lock")
-        wl.acquire()
+      disableBatteryOptimization()
+
     }
 
     override fun onDestroy() {
@@ -118,6 +121,19 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 })
+        }
+    }
+
+    @SuppressLint("BatteryLife")
+    fun disableBatteryOptimization(){
+        val pm = getSystemService(POWER_SERVICE) as PowerManager
+        val wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"WatchBoard:Lock")
+        wl.acquire()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !pm.isIgnoringBatteryOptimizations(packageName)) {
+            val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+            intent.data = Uri.parse("package:" + packageName)
+            startActivity(intent)
         }
     }
 

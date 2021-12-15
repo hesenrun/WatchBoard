@@ -130,19 +130,27 @@ fun refreshAlarm(context: Context) {
         val weekDayAlarmList =
             LitePal.where("isenabled = 1 and isonce = 0 and ${getWeekDayQueryName(trueWeekDay)} = 1")
                 .order("hour,minute").find(AlarmBean::class.java)
+        val weekDayAlarmListIterator=weekDayAlarmList.iterator()
         if (weekDayAlarmList.size == 0) {
             continue
         } else {
-            for (weekDayAlarm in weekDayAlarmList) {
-                if (trueWeekDay == nowTime.dayOfWeek && (weekDayAlarm.hour > nowTime.hourOfDay || (weekDayAlarm.hour == nowTime.hourOfDay && weekDayAlarm.minute > nowTime.minuteOfHour))) {
-                    startAlarm(
-                        context,
-                        DateTime.now().withHourOfDay(weekDayAlarm.hour)
-                            .withMinuteOfHour(weekDayAlarm.minute)
-                            .withSecondOfMinute(0).withMillisOfSecond(0).millis,
-                        5000,
-                        weekDayAlarm.uuid
-                    )
+            while (weekDayAlarmListIterator.hasNext()) {
+                val weekDayAlarm=weekDayAlarmListIterator.next()
+                if (trueWeekDay == nowTime.dayOfWeek) {
+                    if (weekDayAlarm.hour > nowTime.hourOfDay || (weekDayAlarm.hour == nowTime.hourOfDay && weekDayAlarm.minute > nowTime.minuteOfHour)) {
+                        startAlarm(
+                            context,
+                            DateTime.now().withHourOfDay(weekDayAlarm.hour)
+                                .withMinuteOfHour(weekDayAlarm.minute)
+                                .withSecondOfMinute(0).withMillisOfSecond(0).millis,
+                            5000,
+                            weekDayAlarm.uuid
+                        )
+                        break
+                    } else {
+                        weekDayAlarmListIterator.remove()
+                        continue
+                    }
                 } else if (trueWeekDay > nowTime.dayOfWeek) {
                     startAlarm(
                         context,
@@ -153,6 +161,7 @@ fun refreshAlarm(context: Context) {
                         5000,
                         weekDayAlarm.uuid
                     )
+                    break
                 } else if (trueWeekDay < nowTime.dayOfWeek) {
                     startAlarm(
                         context,
@@ -163,16 +172,20 @@ fun refreshAlarm(context: Context) {
                         5000,
                         weekDayAlarm.uuid
                     )
+                    break
                 }
-                break
+
             }
-            break
+            if (weekDayAlarmList.size == 0)
+                continue
+            else
+                break
         }
     }
 }
 
-fun getDataUpdateTimeMills(source:String):Long{
-    var source2=source.replace("T"," ").replace("+08:00","").split(".")[0]
-    val dateTime=DateTimeFormat.forPattern("yyyy-MM-dd HH:mm").parseDateTime(source2)
+fun getDataUpdateTimeMills(source: String): Long {
+    var source2 = source.replace("T", " ").replace("+08:00", "").split(".")[0]
+    val dateTime = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm").parseDateTime(source2)
     return dateTime.millis
 }
