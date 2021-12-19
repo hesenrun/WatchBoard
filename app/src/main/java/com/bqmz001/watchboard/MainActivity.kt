@@ -52,6 +52,21 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, WeatherActivity::class.java))
         }
 
+        binding.cvTime.setOnLongClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+            true
+        }
+
+        binding.cvDate.setOnLongClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+            true
+        }
+
+        binding.cvWeather.setOnLongClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+            true
+        }
+
         receiver = TimeReceiver()
         val filter = IntentFilter()
         filter.addAction(Intent.ACTION_TIME_TICK)
@@ -59,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         refreshTime()
         refreshAlarm(this)
 
-      disableBatteryOptimization()
+        disableBatteryOptimization()
 
     }
 
@@ -91,9 +106,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun queryWeather(dateTime: DateTime) {
-        val interval=Hawk.get<Int>("refresh")
-        if (interval==null||interval==0){
-            Hawk.put("refresh",600000)
+        val interval = Hawk.get<Int>("refresh")
+        if (interval == null || interval == 0) {
+            Hawk.put("refresh", 600000)
         }
         if (dateTime.millis - time > interval) {
             time = dateTime.millis
@@ -125,12 +140,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("BatteryLife")
-    fun disableBatteryOptimization(){
+    fun disableBatteryOptimization() {
         val pm = getSystemService(POWER_SERVICE) as PowerManager
-        val wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"WatchBoard:Lock")
+        val wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "WatchBoard:Lock")
         wl.acquire()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !pm.isIgnoringBatteryOptimizations(packageName)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !pm.isIgnoringBatteryOptimizations(
+                packageName
+            )
+        ) {
             val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
             intent.data = Uri.parse("package:" + packageName)
             startActivity(intent)
