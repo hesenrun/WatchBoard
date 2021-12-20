@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/background_color"
     tools:context=".settings.CitySelectActivity">
 
     <ImageView
@@ -13,6 +14,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:padding="8dp"
+        app:tint="?attr/icon_color"
         android:src="@drawable/ic_baseline_arrow_back_ios_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="设置城市"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_back"
         app:layout_constraintEnd_toStartOf="@+id/iv_more"

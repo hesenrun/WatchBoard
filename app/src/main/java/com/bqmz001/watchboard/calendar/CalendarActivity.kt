@@ -133,7 +133,7 @@ class MeizuMonthView(context: Context?) : MonthView(context) {
                 mSelectedLunarTextPaint
             )
         } else if (hasScheme) {
-            mSelectTextPaint.color = context.resources.getColor(R.color.black)
+            mSelectTextPaint.color = context.resources.getColor(R.color.grey500)
             mSelectedLunarTextPaint.color = context.resources.getColor(R.color.grey500)
             canvas!!.drawText(
                 calendar!!.day.toString(), cx.toFloat(), mTextBaseLine + top - 5,
@@ -146,8 +146,8 @@ class MeizuMonthView(context: Context?) : MonthView(context) {
                 mCurMonthLunarTextPaint
             )
         } else {
-            mSelectTextPaint.color = context.resources.getColor(R.color.black)
-            mSelectedLunarTextPaint.color = context.resources.getColor(R.color.grey500)
+//            mSelectTextPaint.color = context.resources.getColor(R.color.grey500)
+//            mSelectedLunarTextPaint.color = context.resources.getColor(R.color.grey500)
             canvas!!.drawText(
                 calendar!!.day.toString(), cx.toFloat(), mTextBaseLine + top - 5,
                 if (calendar.isCurrentDay) mCurDayTextPaint else if (calendar.isCurrentMonth && isInRange) mCurMonthTextPaint else mOtherMonthTextPaint

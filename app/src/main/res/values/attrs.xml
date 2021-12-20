@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="text_color" format="color" />
+    <attr name="background_color" format="color" />
+    <attr name="icon_color" format="color" />
+    <attr name="weather_color" format="color" />
+    <attr name="card_color" format="color" />
+    <attr name="calendar_day_color" format="color" />
+    <attr name="calendar_day_lunar_color" format="color" />
+    <attr name="calendar_others" format="color" />
+</resources>

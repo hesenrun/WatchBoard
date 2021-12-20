@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/background_color"
     tools:context=".weather.WeatherActivity">
 
     <ImageView
@@ -15,7 +16,8 @@
         android:padding="8dp"
         android:src="@drawable/ic_baseline_arrow_back_ios_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/icon_color" />
 
     <ImageView
         android:id="@+id/iv_more"
@@ -34,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="山西省 太原市 小店区"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_back"
         app:layout_constraintEnd_toStartOf="@+id/iv_more"
@@ -45,9 +47,9 @@
         android:id="@+id/iv_weather_icon"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:scaleType="fitXY"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_back" />
 
@@ -56,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/iv_weather_icon"
@@ -80,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tv_split"
@@ -163,7 +165,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_wind_hint"
         app:layout_constraintEnd_toEndOf="@+id/tv_wind_hint"
@@ -175,8 +177,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/black"
         android:gravity="center"
+        android:textColor="?attr/text_color"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_wet_hint"
         app:layout_constraintEnd_toEndOf="@+id/tv_wet_hint"
@@ -188,8 +190,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/black"
         android:gravity="center"
+        android:textColor="?attr/text_color"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_rain_hint"
         app:layout_constraintEnd_toEndOf="@+id/tv_rain_hint"
@@ -201,8 +203,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/black"
         android:gravity="center"
+        android:textColor="?attr/text_color"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_pressure_hint"
         app:layout_constraintEnd_toEndOf="@+id/tv_pressure_hint"

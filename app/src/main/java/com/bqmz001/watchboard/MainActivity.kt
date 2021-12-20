@@ -5,6 +5,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.RectF
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +29,8 @@ import org.joda.time.DateTime
 import android.os.PowerManager
 import android.os.PowerManager.WakeLock
 import android.provider.Settings
+import androidx.appcompat.app.AppCompatDelegate
+import com.pixplicity.sharp.OnSvgElementListener
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +43,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Hawk.get("dark", false)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.cvTime.setOnClickListener {
@@ -131,8 +143,40 @@ class MainActivity : AppCompatActivity() {
                             Hawk.put("now-weather", p0)
                             Hawk.put("now-weather-time", dateTime.millis)
                             binding.tvTemp.setText("${p0.now.temp}°C")
-                            Sharp.loadAsset(assets, "weather_icons/${p0.now.icon}.svg")
-                                .into(binding.ivWeatherIcon)
+                            val sharp = Sharp.loadAsset(assets, "weather_icons/${p0.now.icon}.svg")
+                            sharp.setOnElementListener(object : OnSvgElementListener {
+                                override fun onSvgStart(p0: Canvas, p1: RectF?) {
+                                }
+
+                                override fun onSvgEnd(p0: Canvas, p1: RectF?) {
+                                }
+
+                                override fun <T : Any?> onSvgElement(
+                                    p0: String?,
+                                    p1: T,
+                                    p2: RectF?,
+                                    p3: Canvas,
+                                    p4: RectF?,
+                                    p5: Paint?
+                                ): T {
+                                    if (Hawk.get("dark", false) == false) {
+                                        p5!!.color = resources.getColor(R.color.grey900)
+                                    } else {
+                                        p5!!.color = resources.getColor(R.color.grey300)
+                                    }
+                                    return p1
+                                }
+
+                                override fun <T : Any?> onSvgElementDrawn(
+                                    p0: String?,
+                                    p1: T,
+                                    p2: Canvas,
+                                    p3: Paint?
+                                ) {
+                                }
+
+                            })
+                            sharp.into(binding.ivWeatherIcon)
                         }
                     }
                 })

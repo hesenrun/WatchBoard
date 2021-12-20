@@ -10,6 +10,14 @@
         <item name="colorSecondaryVariant">@color/purple700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
+        <item name="weather_color">@color/grey900</item>
+        <item name="text_color">@color/grey900</item>
+        <item name="icon_color">@color/grey700</item>
+        <item name="background_color">@color/grey100</item>
+        <item name="card_color">@color/white</item>
+        <item name="calendar_day_color">@color/grey700</item>
+        <item name="calendar_day_lunar_color">@color/grey700</item>
+        <item name="calendar_others">@color/grey400</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>

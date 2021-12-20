@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey300"
+    android:background="?attr/background_color"
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
@@ -14,6 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="?attr/card_color"
         app:cardCornerRadius="16dp"
         app:contentPaddingLeft="16dp"
         app:contentPaddingRight="16dp"
@@ -32,12 +33,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00"
+                android:textColor="?attr/text_color"
                 android:textSize="96sp" />
 
             <TextView
                 android:id="@+id/tv_minute"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/text_color"
                 android:text="00"
                 android:textSize="96sp" />
         </LinearLayout>
@@ -50,6 +53,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="?attr/card_color"
         app:cardCornerRadius="16dp"
         app:contentPaddingBottom="8dp"
         app:contentPaddingLeft="16dp"
@@ -69,6 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="28sp"
+                android:textColor="?attr/text_color"
                 tools:text="2021年12月04日" />
 
             <TextView
@@ -76,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="28sp"
+                android:textColor="?attr/text_color"
                 tools:text="星期六 冬月初一" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -88,6 +94,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="?attr/card_color"
         app:cardCornerRadius="16dp"
         app:contentPaddingBottom="8dp"
         app:contentPaddingLeft="16dp"
@@ -107,15 +114,16 @@
                 android:id="@+id/iv_weather_icon"
                 android:layout_width="104dp"
                 android:layout_height="104dp"
-                app:tint="@color/grey500"
                 android:layout_centerVertical="true"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                app:tint="@color/grey500" />
 
             <TextView
                 android:id="@+id/tv_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:textColor="?attr/text_color"
                 android:layout_marginLeft="16dp"
                 android:layout_toRightOf="@id/iv_weather_icon"
                 android:textSize="64dp" />

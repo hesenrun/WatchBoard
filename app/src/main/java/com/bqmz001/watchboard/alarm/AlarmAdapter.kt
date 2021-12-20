@@ -25,7 +25,7 @@ class AlarmAdapter(list: MutableList<AlarmBean>) :
         if (item.isEnabled) {
             lineEnabled.setBackgroundColor(context.resources.getColor(R.color.green500))
         } else {
-            lineEnabled.setBackgroundColor(context.resources.getColor(R.color.blue_grey500))
+            lineEnabled.setBackgroundColor(context.resources.getColor(R.color.red500))
         }
 
         if (item.isOnce) {
@@ -41,7 +41,7 @@ class AlarmAdapter(list: MutableList<AlarmBean>) :
             dot7.visibility = View.GONE
         } else {
             dot8.backgroundTintList =
-                ColorStateList.valueOf(context.resources.getColor(R.color.blue_grey500))
+                ColorStateList.valueOf(context.resources.getColor(R.color.red500))
             dot8.visibility = View.GONE
             dot1.visibility = View.VISIBLE
             dot2.visibility = View.VISIBLE
@@ -56,7 +56,7 @@ class AlarmAdapter(list: MutableList<AlarmBean>) :
             context.resources.getColor(
                 when (item.isMondayEnabled) {
                     true -> R.color.green500
-                    false -> R.color.blue_grey500
+                    false -> R.color.red500
                 }
             )
         )
@@ -64,7 +64,7 @@ class AlarmAdapter(list: MutableList<AlarmBean>) :
             context.resources.getColor(
                 when (item.isTuesdayEnabled) {
                     true -> R.color.green500
-                    false -> R.color.blue_grey500
+                    false -> R.color.red500
                 }
             )
         )
@@ -72,7 +72,7 @@ class AlarmAdapter(list: MutableList<AlarmBean>) :
             context.resources.getColor(
                 when (item.isWednesdayEnabled) {
                     true -> R.color.green500
-                    false -> R.color.blue_grey500
+                    false -> R.color.red500
                 }
             )
         )
@@ -80,7 +80,7 @@ class AlarmAdapter(list: MutableList<AlarmBean>) :
             context.resources.getColor(
                 when (item.isThursdayEnabled) {
                     true -> R.color.green500
-                    false -> R.color.blue_grey500
+                    false -> R.color.red500
                 }
             )
         )
@@ -88,7 +88,7 @@ class AlarmAdapter(list: MutableList<AlarmBean>) :
             context.resources.getColor(
                 when (item.isFridayEnabled) {
                     true -> R.color.green500
-                    false -> R.color.blue_grey500
+                    false -> R.color.red500
                 }
             )
         )
@@ -96,7 +96,7 @@ class AlarmAdapter(list: MutableList<AlarmBean>) :
             context.resources.getColor(
                 when (item.isSaturdayEnabled) {
                     true -> R.color.green500
-                    false -> R.color.blue_grey500
+                    false -> R.color.red500
                 }
             )
         )
@@ -104,7 +104,7 @@ class AlarmAdapter(list: MutableList<AlarmBean>) :
             context.resources.getColor(
                 when (item.isSundayEnabled) {
                     true -> R.color.green500
-                    false -> R.color.blue_grey500
+                    false -> R.color.red500
                 }
             )
         )

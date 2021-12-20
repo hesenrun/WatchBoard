@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/background_color"
     tools:context=".alarm.AlarmEditActivity">
 
     <ImageView
@@ -15,7 +16,8 @@
         android:padding="8dp"
         android:src="@drawable/ic_baseline_close_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/icon_color" />
 
     <ImageView
         android:id="@+id/iv_delete"
@@ -26,7 +28,8 @@
         android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintBottom_toBottomOf="@+id/iv_close"
         app:layout_constraintStart_toEndOf="@+id/iv_close"
-        app:layout_constraintTop_toTopOf="@+id/iv_close" />
+        app:layout_constraintTop_toTopOf="@+id/iv_close"
+        app:tint="?attr/icon_color" />
 
     <ImageView
         android:id="@+id/iv_submit"
@@ -38,14 +41,15 @@
         android:src="@drawable/ic_baseline_check_24"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/icon_color" />
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="编辑闹钟"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_close"
         app:layout_constraintEnd_toStartOf="@+id/iv_submit"
@@ -57,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="64sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +75,8 @@
         app:layout_constraintBottom_toTopOf="@+id/tv_alarm_hour"
         app:layout_constraintEnd_toEndOf="@+id/tv_alarm_hour"
         app:layout_constraintStart_toStartOf="@+id/tv_alarm_hour"
-        app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24" />
+        app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24"
+        app:tint="?attr/icon_color" />
 
     <ImageView
         android:id="@+id/iv_hour_down"
@@ -80,7 +85,8 @@
         app:layout_constraintEnd_toEndOf="@+id/tv_alarm_hour"
         app:layout_constraintStart_toStartOf="@+id/tv_alarm_hour"
         app:layout_constraintTop_toBottomOf="@+id/tv_alarm_hour"
-        app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+        app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24"
+        app:tint="?attr/icon_color" />
 
     <TextView
         android:id="@+id/tv_colon"
@@ -89,6 +95,7 @@
         android:layout_marginBottom="12dp"
         android:gravity="center"
         android:text=":"
+        android:textColor="?attr/text_color"
         android:textSize="64sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_alarm_hour"
         app:layout_constraintStart_toEndOf="@+id/tv_alarm_hour"
@@ -98,7 +105,7 @@
         android:id="@+id/tv_alarm_minute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="64sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_alarm_hour"
         app:layout_constraintStart_toEndOf="@+id/tv_colon"
@@ -112,7 +119,8 @@
         app:layout_constraintBottom_toTopOf="@+id/tv_alarm_minute"
         app:layout_constraintEnd_toEndOf="@+id/tv_alarm_minute"
         app:layout_constraintStart_toStartOf="@+id/tv_alarm_minute"
-        app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24" />
+        app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24"
+        app:tint="?attr/icon_color" />
 
     <ImageView
         android:id="@+id/iv_minute_down"
@@ -129,6 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:text="启用"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_alarm_minute"
         app:layout_constraintStart_toEndOf="@+id/tv_alarm_minute"
@@ -149,6 +158,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="仅一次"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/tv_enabled"
         app:layout_constraintTop_toBottomOf="@+id/tv_enabled" />
@@ -168,6 +178,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="周一"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/tv_only_once"
         app:layout_constraintTop_toBottomOf="@+id/tv_only_once" />
@@ -177,6 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="周二"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/checkBox"
         app:layout_constraintStart_toEndOf="@+id/checkBox"
@@ -187,6 +199,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="周三"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
         app:layout_constraintStart_toEndOf="@+id/checkBox2"
@@ -197,6 +210,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="周四"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/checkBox3"
         app:layout_constraintStart_toEndOf="@+id/checkBox3"
@@ -207,6 +221,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="周五"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/checkBox"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
@@ -216,6 +231,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="周六"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/checkBox5"
         app:layout_constraintStart_toEndOf="@+id/checkBox5"
@@ -226,6 +242,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="周日"
+        android:textColor="?attr/text_color"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/checkBox6"
         app:layout_constraintStart_toEndOf="@+id/checkBox6"

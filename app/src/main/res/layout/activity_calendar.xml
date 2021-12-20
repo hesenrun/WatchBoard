@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="?attr/background_color"
     android:layout_height="match_parent"
     tools:context=".calendar.CalendarActivity">
 
     <ImageView
         android:id="@+id/iv_back"
         android:layout_width="48dp"
+        app:tint="?attr/icon_color"
         android:layout_height="48dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
@@ -20,6 +22,7 @@
     <ImageView
         android:id="@+id/iv_more"
         android:layout_width="48dp"
+        app:tint="?attr/icon_color"
         android:layout_height="48dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
@@ -34,7 +37,7 @@
         android:layout_height="wrap_content"
         tools:text="2021年11月"
         android:textSize="18sp"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         app:layout_constraintBottom_toBottomOf="@+id/iv_back"
         app:layout_constraintEnd_toStartOf="@+id/iv_more"
         app:layout_constraintStart_toEndOf="@+id/iv_back"
@@ -49,6 +52,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_back"
         app:month_view="com.bqmz001.watchboard.calendar.MeizuMonthView"
+        app:current_month_lunar_text_color="?attr/calendar_day_lunar_color"
+        app:current_month_text_color="?attr/calendar_day_color"
+        app:week_bar_height="30dp"
+        app:week_background="?attr/background_color"
+        app:week_text_color="?attr/text_color"
+        app:other_month_text_color="?attr/calendar_others"
+        app:other_month_lunar_text_color="?attr/calendar_others"
         app:calendar_match_parent="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,18 @@
 package com.bqmz001.watchboard.weather
 
 import android.content.Intent
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.RectF
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import com.bqmz001.watchboard.R
 import com.bqmz001.watchboard.databinding.ActivityWeatherBinding
 import com.orhanobut.hawk.Hawk
+import com.pixplicity.sharp.OnSvgElementListener
 import com.pixplicity.sharp.Sharp
 import com.qweather.sdk.bean.weather.WeatherNowBean
 import org.joda.time.DateTime
@@ -54,8 +59,41 @@ class WeatherActivity : AppCompatActivity() {
             binding.tvWet.setText("${nowWeather.now.humidity}\n%")
             binding.tvRain.setText("${nowWeather.now.precip}\nmm")
             binding.tvPressure.setText("${nowWeather.now.pressure}\nhPa")
-            Sharp.loadAsset(assets, "weather_icons/${nowWeather.now.icon}.svg")
-                .into(binding.ivWeatherIcon)
+            val sharp = Sharp.loadAsset(assets, "weather_icons/${nowWeather.now.icon}.svg")
+            sharp.setOnElementListener(object : OnSvgElementListener {
+                override fun onSvgStart(p0: Canvas, p1: RectF?) {
+                }
+
+                override fun onSvgEnd(p0: Canvas, p1: RectF?) {
+                }
+
+                override fun <T : Any?> onSvgElement(
+                    p0: String?,
+                    p1: T,
+                    p2: RectF?,
+                    p3: Canvas,
+                    p4: RectF?,
+                    p5: Paint?
+                ): T {
+                    if (Hawk.get("dark", false) == false) {
+                        p5!!.color = resources.getColor(R.color.grey900)
+                    } else {
+                        p5!!.color = resources.getColor(R.color.grey300)
+                    }
+                    return p1
+                }
+
+                override fun <T : Any?> onSvgElementDrawn(
+                    p0: String?,
+                    p1: T,
+                    p2: Canvas,
+                    p3: Paint?
+                ) {
+                }
+
+            })
+            sharp.into(binding.ivWeatherIcon)
+
         } else {
             Toast.makeText(this, "数据错误或数据过期,请检查API ID和KEY是否配置正确或检查网络配置", Toast.LENGTH_LONG).show()
             binding.ivWeatherIcon.visibility = View.GONE

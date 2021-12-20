@@ -7,6 +7,7 @@ import android.view.KeyEvent
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.*
 import com.bqmz001.watchboard.R
 import androidx.core.content.ContextCompat.startActivity
@@ -39,6 +40,8 @@ class SettingsActivity : AppCompatActivity() {
             val weather_location = findPreference<Preference>("weather_location")
             val weather_refresh = findPreference<ListPreference>("weather_refresh")
             val system_settings = findPreference<Preference>("system_settings")
+            val dark = findPreference<SwitchPreference>("dark")
+
             val about = findPreference<Preference>("about")
 
             weather_public_id!!.setSummary(Hawk.get("qweather_public_id", "未设置"))
@@ -66,6 +69,16 @@ class SettingsActivity : AppCompatActivity() {
             }
             system_settings!!.setOnPreferenceClickListener {
                 requireContext().startActivity(Intent(Settings.ACTION_SETTINGS))
+                true
+            }
+            dark!!.setOnPreferenceChangeListener { preference, newValue ->
+                AppCompatDelegate.setDefaultNightMode(
+                    when (newValue as Boolean) {
+                        true -> AppCompatDelegate.MODE_NIGHT_YES
+                        false -> AppCompatDelegate.MODE_NIGHT_NO
+                    }
+                )
+                Hawk.put("dark", newValue)
                 true
             }
 
