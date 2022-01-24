@@ -271,7 +271,8 @@ class AlarmEditActivity : AppCompatActivity() {
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == 219) {
             finish()
+            return true
         }
-        return true
+        return super.onKeyDown(keyCode, event)
     }
 }
