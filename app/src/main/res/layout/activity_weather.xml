@@ -43,195 +43,374 @@
         app:layout_constraintStart_toEndOf="@+id/iv_back"
         app:layout_constraintTop_toTopOf="@+id/iv_more" />
 
-    <ImageView
-        android:id="@+id/iv_weather_icon"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_back" />
-
-    <TextView
-        android:id="@+id/tv_temp_actual"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:textColor="?attr/text_color"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_weather_icon"
-        app:layout_constraintStart_toEndOf="@+id/iv_weather_icon"
-        tools:text="-99°C" />
-
-    <TextView
-        android:id="@+id/tv_split"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:text="/"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_temp_actual"
-        app:layout_constraintStart_toEndOf="@+id/tv_temp_actual"
-        app:layout_constraintTop_toTopOf="@+id/tv_temp_actual" />
-
-    <TextView
-        android:id="@+id/tv_temp_feel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:textColor="?attr/text_color"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_split"
-        app:layout_constraintStart_toEndOf="@+id/tv_split"
-
-        tools:text="-99°C" />
-
-    <TextView
-        android:id="@+id/tv_temp_feel_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="体感温度"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_temp_feel"
-        app:layout_constraintStart_toStartOf="@+id/tv_temp_feel" />
-
-    <TextView
-        android:id="@+id/tv_temp_actual_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="实际温度"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_temp_actual"
-        app:layout_constraintStart_toStartOf="@+id/tv_temp_actual" />
-
-    <TextView
-        android:id="@+id/tv_wind_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16sp"
-        android:text="风向"
-        android:textSize="18sp"
-        android:textStyle="bold"
+    <HorizontalScrollView
+        android:id="@+id/hsv_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tv_wet_hint"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_wet_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="湿度"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tv_rain_hint"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_wind_hint"
-        app:layout_constraintTop_toTopOf="@+id/tv_wind_hint" />
-
-    <TextView
-        android:id="@+id/tv_rain_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="降水量"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_wet_hint"
-        app:layout_constraintEnd_toStartOf="@+id/tv_pressure_hint"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_wet_hint"
-        app:layout_constraintTop_toTopOf="@+id/tv_wet_hint" />
-
-    <TextView
-        android:id="@+id/tv_pressure_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="大气压强"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_rain_hint"
+        android:scrollbars="none"
+        android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_rain_hint"
-        app:layout_constraintTop_toTopOf="@+id/tv_rain_hint" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_back">
 
-    <TextView
-        android:id="@+id/tv_wind"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:textColor="?attr/text_color"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_wind_hint"
-        app:layout_constraintEnd_toEndOf="@+id/tv_wind_hint"
-        app:layout_constraintStart_toStartOf="@+id/tv_wind_hint"
-        tools:text="3-4级\n西北风" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_wet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:textColor="?attr/text_color"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_wet_hint"
-        app:layout_constraintEnd_toEndOf="@+id/tv_wet_hint"
-        app:layout_constraintStart_toStartOf="@+id/tv_wet_hint"
-        tools:text="39\n%" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="?attr/card_color"
+                app:cardCornerRadius="16dp"
+                app:contentPaddingLeft="16dp"
+                app:contentPaddingRight="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tv_rain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:textColor="?attr/text_color"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_rain_hint"
-        app:layout_constraintEnd_toEndOf="@+id/tv_rain_hint"
-        app:layout_constraintStart_toStartOf="@+id/tv_rain_hint"
-        tools:text="9999\n毫米" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_pressure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:textColor="?attr/text_color"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_pressure_hint"
-        app:layout_constraintEnd_toEndOf="@+id/tv_pressure_hint"
-        app:layout_constraintStart_toStartOf="@+id/tv_pressure_hint"
-        tools:text="9999\nmPa" />
+                    <ImageView
+                        android:id="@+id/iv_weather_icon"
+                        android:layout_width="108dp"
+                        android:layout_height="108dp"
+                        android:scaleType="fitXY"
+                        android:layout_marginTop="32dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_24hour_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:padding="6dp"
-        android:text="24小时预报>"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_temp_feel"
-        app:layout_constraintTop_toTopOf="@+id/tv_temp_feel" />
+                    <TextView
+                        android:id="@+id/tv_temp_actual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:textColor="?attr/text_color"
+                        android:textSize="48sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/iv_weather_icon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="-99°C" />
 
-    <TextView
-        android:id="@+id/tv_7day_weather"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="6dp"
-        android:text="7天预报>"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_temp_feel"
-        app:layout_constraintEnd_toEndOf="@+id/tv_24hour_weather"
-        app:layout_constraintStart_toStartOf="@+id/tv_24hour_weather"
-        app:layout_constraintTop_toBottomOf="@+id/tv_24hour_weather" />
+                    <TextView
+                        android:id="@+id/tv_temp_actual_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="实际温度"
+                        app:layout_constraintStart_toStartOf="@+id/tv_temp_actual"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_temp_actual" />
+
+                    <TextView
+                        android:id="@+id/tv_temp_feel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/text_color"
+                        android:textSize="48sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/tv_temp_actual"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_temp_actual_hint"
+                        tools:text="-99°C" />
+
+                    <TextView
+                        android:id="@+id/tv_temp_feel_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="体感温度"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_temp_feel"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_temp_feel" />
+
+                    <TextView
+                        android:id="@+id/tv_update_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="更新时间：2022-99-99 99:99:99"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="8dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="96dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="?attr/card_color"
+                    app:cardCornerRadius="16dp"
+                    app:contentPaddingLeft="16dp"
+                    app:contentPaddingRight="16dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_wind"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:textColor="?attr/text_color"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_wind_hint"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_wind_hint"
+                            app:layout_constraintStart_toStartOf="@+id/tv_wind_hint"
+                            tools:text="99-99级\n西北风" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tv_wind_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:text="风向"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="96dp"
+                    android:layout_height="0dp"
+
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="?attr/card_color"
+                    app:cardCornerRadius="16dp"
+                    app:contentPaddingLeft="16dp"
+                    app:contentPaddingRight="16dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_wet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:textColor="?attr/text_color"
+                            android:textSize="18sp"
+                            tools:text="999\n%" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tv_wet_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:text="湿度"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="8dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="96dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="?attr/card_color"
+                    app:cardCornerRadius="16dp"
+                    app:contentPaddingLeft="16dp"
+                    app:contentPaddingRight="16dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_rain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:textColor="?attr/text_color"
+                            android:textSize="18sp"
+                            tools:text="9999\n毫米" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tv_rain_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:text="降水量"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="96dp"
+                    android:layout_height="0dp"
+
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="?attr/card_color"
+                    app:cardCornerRadius="16dp"
+                    app:contentPaddingLeft="16dp"
+                    app:contentPaddingRight="16dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_pressure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:textColor="?attr/text_color"
+                            android:textSize="18sp"
+                            tools:text="9999\nmPa" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tv_pressure_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:text="大气压强"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="8dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="96dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="?attr/card_color"
+                    app:cardCornerRadius="16dp"
+                    app:contentPaddingLeft="16dp"
+                    app:contentPaddingRight="16dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_vis"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:textColor="?attr/text_color"
+                            android:textSize="18sp"
+                            tools:text="0.999\nkm" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tv_vis_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:text="能见度"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_more"
+                    android:layout_width="96dp"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="?attr/card_color"
+                    app:cardCornerRadius="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_24hour_weather"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="逐时预报>" />
+
+                        <TextView
+                            android:id="@+id/tv_7day_weather"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="24dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="7天预报>" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

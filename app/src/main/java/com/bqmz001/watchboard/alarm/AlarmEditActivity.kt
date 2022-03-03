@@ -1,12 +1,16 @@
 package com.bqmz001.watchboard.alarm
 
 import android.content.ContentValues
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.widget.*
+import com.bqmz001.watchboard.R
 import com.bqmz001.watchboard.databinding.ActivityAlarmEditBinding
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.interfaces.OnConfirmListener
 import org.joda.time.DateTime
 import org.litepal.LitePal
 import org.litepal.extension.find
@@ -22,11 +26,18 @@ class AlarmEditActivity : AppCompatActivity() {
 
         binding.ivClose.setOnClickListener { finish() }
         binding.ivDelete.setOnClickListener {
-            val alarm = LitePal.where("uuid = ?", intent.getStringExtra("id").toString())
-                .find<AlarmBean>()[0]
-            LitePal.delete(AlarmBean::class.java, alarm.id.toLong())
-            setResult(RESULT_OK)
-            finish()
+            XPopup.Builder(this)
+                .isDestroyOnDismiss(true)
+                .asConfirm("提示","确定要删除该闹钟吗？",object:OnConfirmListener{
+                    override fun onConfirm() {
+                        val alarm = LitePal.where("uuid = ?", intent.getStringExtra("id").toString())
+                            .find<AlarmBean>()[0]
+                        LitePal.delete(AlarmBean::class.java, alarm.id.toLong())
+                        setResult(RESULT_OK)
+                        finish()
+                    }
+                })
+                .show()
         }
         binding.ivSubmit.setOnClickListener {
             if (!binding.swOnlyOnce.isChecked && !binding.checkBox.isChecked && !binding.checkBox2.isChecked && !binding.checkBox3.isChecked && !binding.checkBox4.isChecked && !binding.checkBox5.isChecked && !binding.checkBox6.isChecked && !binding.checkBox7.isChecked) {
@@ -181,6 +192,7 @@ class AlarmEditActivity : AppCompatActivity() {
         }
         binding.swOnlyOnce.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
+                binding.llWeekdayContainer.visibility=View.GONE
                 binding.checkBox.isEnabled = false
                 binding.checkBox2.isEnabled = false
                 binding.checkBox3.isEnabled = false
@@ -189,6 +201,7 @@ class AlarmEditActivity : AppCompatActivity() {
                 binding.checkBox6.isEnabled = false
                 binding.checkBox7.isEnabled = false
             } else {
+                binding.llWeekdayContainer.visibility=View.VISIBLE
                 binding.checkBox.isEnabled = true
                 binding.checkBox2.isEnabled = true
                 binding.checkBox3.isEnabled = true
@@ -197,6 +210,77 @@ class AlarmEditActivity : AppCompatActivity() {
                 binding.checkBox6.isEnabled = true
                 binding.checkBox7.isEnabled = true
             }
+        }
+
+        binding.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            buttonView.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+        }
+        binding.checkBox2.setOnCheckedChangeListener { buttonView, isChecked ->
+            buttonView.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+        }
+        binding.checkBox3.setOnCheckedChangeListener { buttonView, isChecked ->
+            buttonView.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+        }
+        binding.checkBox4.setOnCheckedChangeListener { buttonView, isChecked ->
+            buttonView.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+        }
+        binding.checkBox5.setOnCheckedChangeListener { buttonView, isChecked ->
+            buttonView.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+        }
+        binding.checkBox6.setOnCheckedChangeListener { buttonView, isChecked ->
+            buttonView.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+        }
+        binding.checkBox7.setOnCheckedChangeListener { buttonView, isChecked ->
+            buttonView.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
         }
 
         if (intent.getStringExtra("type").equals("edit")) {
@@ -223,6 +307,8 @@ class AlarmEditActivity : AppCompatActivity() {
                 binding.checkBox5.isChecked = false
                 binding.checkBox6.isChecked = false
                 binding.checkBox7.isChecked = false
+
+                binding.llWeekdayContainer.visibility=View.GONE
             } else {
                 binding.checkBox.isEnabled = true
                 binding.checkBox2.isEnabled = true
@@ -239,6 +325,63 @@ class AlarmEditActivity : AppCompatActivity() {
                 binding.checkBox5.isChecked = alarm.isFridayEnabled
                 binding.checkBox6.isChecked = alarm.isSaturdayEnabled
                 binding.checkBox7.isChecked = alarm.isSundayEnabled
+
+                binding.checkBox.backgroundTintList= ColorStateList.valueOf(
+                    resources.getColor(
+                        when (binding.checkBox.isChecked) {
+                            true -> R.color.green400
+                            false -> R.color.grey400
+                        }
+                    )
+                )
+                binding.checkBox2.backgroundTintList= ColorStateList.valueOf(
+                    resources.getColor(
+                        when (binding.checkBox2.isChecked) {
+                            true -> R.color.green400
+                            false -> R.color.grey400
+                        }
+                    )
+                )
+                binding.checkBox3.backgroundTintList= ColorStateList.valueOf(
+                    resources.getColor(
+                        when (binding.checkBox3.isChecked) {
+                            true -> R.color.green400
+                            false -> R.color.grey400
+                        }
+                    )
+                )
+                binding.checkBox4.backgroundTintList= ColorStateList.valueOf(
+                    resources.getColor(
+                        when (binding.checkBox4.isChecked) {
+                            true -> R.color.green400
+                            false -> R.color.grey400
+                        }
+                    )
+                )
+                binding.checkBox5.backgroundTintList= ColorStateList.valueOf(
+                    resources.getColor(
+                        when (binding.checkBox5.isChecked) {
+                            true -> R.color.green400
+                            false -> R.color.grey400
+                        }
+                    )
+                )
+                binding.checkBox6.backgroundTintList= ColorStateList.valueOf(
+                    resources.getColor(
+                        when (binding.checkBox6.isChecked) {
+                            true -> R.color.green400
+                            false -> R.color.grey400
+                        }
+                    )
+                )
+                binding.checkBox7.backgroundTintList= ColorStateList.valueOf(
+                    resources.getColor(
+                        when (binding.checkBox7.isChecked) {
+                            true -> R.color.green400
+                            false -> R.color.grey400
+                        }
+                    )
+                )
             }
 
 
@@ -265,6 +408,63 @@ class AlarmEditActivity : AppCompatActivity() {
             binding.checkBox5.isChecked = true
             binding.checkBox6.isChecked = false
             binding.checkBox7.isChecked = false
+
+            binding.checkBox.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (binding.checkBox.isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+            binding.checkBox2.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (binding.checkBox2.isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+            binding.checkBox3.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (binding.checkBox3.isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+            binding.checkBox4.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (binding.checkBox4.isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+            binding.checkBox5.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (binding.checkBox5.isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+            binding.checkBox6.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (binding.checkBox6.isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
+            binding.checkBox7.backgroundTintList= ColorStateList.valueOf(
+                resources.getColor(
+                    when (binding.checkBox7.isChecked) {
+                        true -> R.color.green400
+                        false -> R.color.grey400
+                    }
+                )
+            )
         }
     }
 

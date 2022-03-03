@@ -39,6 +39,7 @@ class SettingsActivity : AppCompatActivity() {
             val weather_api_key = findPreference<EditTextPreference>("weather_api_key")
             val weather_location = findPreference<Preference>("weather_location")
             val weather_refresh = findPreference<ListPreference>("weather_refresh")
+            val weather_advanced=findPreference<SwitchPreference>("weather_advanced")
             val system_settings = findPreference<Preference>("system_settings")
             val dark = findPreference<SwitchPreference>("dark")
 
@@ -69,6 +70,10 @@ class SettingsActivity : AppCompatActivity() {
             }
             system_settings!!.setOnPreferenceClickListener {
                 requireContext().startActivity(Intent(Settings.ACTION_SETTINGS))
+                true
+            }
+            weather_advanced!!.setOnPreferenceChangeListener{prefrence,newValue->
+                Hawk.put("advanced", newValue)
                 true
             }
             dark!!.setOnPreferenceChangeListener { preference, newValue ->

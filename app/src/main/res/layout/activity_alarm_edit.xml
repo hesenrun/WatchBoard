@@ -25,6 +25,7 @@
         android:layout_height="48dp"
         android:layout_marginLeft="8dp"
         android:padding="12dp"
+
         android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintBottom_toBottomOf="@+id/iv_close"
         app:layout_constraintStart_toEndOf="@+id/iv_close"
@@ -148,8 +149,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_enabled"
-        app:layout_constraintEnd_toEndOf="@+id/checkBox4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_enabled" />
 
     <TextView
@@ -168,85 +170,123 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_only_once"
-        app:layout_constraintEnd_toEndOf="@+id/checkBox4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_only_once" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
+    <LinearLayout
+        android:id="@+id/ll_weekday_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="周一"
-        android:textColor="?attr/text_color"
-        android:textSize="18sp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/sw_only_once"
         app:layout_constraintStart_toStartOf="@+id/tv_only_once"
-        app:layout_constraintTop_toBottomOf="@+id/tv_only_once" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_only_once">
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="周二"
-        android:textColor="?attr/text_color"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox"
-        app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toTopOf="@+id/checkBox" />
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/bg_dot"
+            android:button="@null"
+            android:gravity="center"
+            android:text="一"
+            android:textColor="?attr/text_color"
+            android:textSize="18sp" />
 
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="周三"
-        android:textColor="?attr/text_color"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
-        app:layout_constraintStart_toEndOf="@+id/checkBox2"
-        app:layout_constraintTop_toTopOf="@+id/checkBox2" />
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/bg_dot"
+            android:button="@null"
+            android:gravity="center"
+            android:text="二"
+            android:textColor="?attr/text_color"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBox"
+            app:layout_constraintStart_toEndOf="@+id/checkBox"
+            app:layout_constraintTop_toTopOf="@+id/checkBox" />
 
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="周四"
-        android:textColor="?attr/text_color"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox3"
-        app:layout_constraintStart_toEndOf="@+id/checkBox3"
-        app:layout_constraintTop_toTopOf="@+id/checkBox3" />
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_dot"
+            android:button="@null"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:text="三"
+            android:textColor="?attr/text_color"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
+            app:layout_constraintStart_toEndOf="@+id/checkBox2"
+            app:layout_constraintTop_toTopOf="@+id/checkBox2" />
 
-    <CheckBox
-        android:id="@+id/checkBox5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="周五"
-        android:textColor="?attr/text_color"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        <CheckBox
+            android:id="@+id/checkBox4"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_dot"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_marginRight="8dp"
+            android:text="四"
+            android:textColor="?attr/text_color"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBox3"
+            app:layout_constraintStart_toEndOf="@+id/checkBox3"
+            app:layout_constraintTop_toTopOf="@+id/checkBox3" />
 
-    <CheckBox
-        android:id="@+id/checkBox6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="周六"
-        android:textColor="?attr/text_color"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox5"
-        app:layout_constraintStart_toEndOf="@+id/checkBox5"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        <CheckBox
+            android:id="@+id/checkBox5"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_dot"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_marginRight="8dp"
+            android:text="五"
+            android:textColor="?attr/text_color"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBox4"
+            app:layout_constraintStart_toEndOf="@+id/checkBox4"
+            app:layout_constraintTop_toTopOf="@+id/checkBox4" />
 
-    <CheckBox
-        android:id="@+id/checkBox7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="周日"
-        android:textColor="?attr/text_color"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox6"
-        app:layout_constraintStart_toEndOf="@+id/checkBox6"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        <CheckBox
+            android:id="@+id/checkBox6"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/bg_dot"
+            android:button="@null"
+            android:gravity="center"
+            android:text="六"
+            android:textColor="?attr/text_color"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBox5"
+            app:layout_constraintStart_toEndOf="@+id/checkBox5"
+            app:layout_constraintTop_toTopOf="@+id/checkBox5" />
+
+        <CheckBox
+            android:id="@+id/checkBox7"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_dot"
+            android:button="@null"
+            android:gravity="center"
+            android:text="日"
+            android:textColor="?attr/text_color"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBox6"
+            app:layout_constraintStart_toEndOf="@+id/checkBox6"
+            app:layout_constraintTop_toTopOf="@+id/checkBox6" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

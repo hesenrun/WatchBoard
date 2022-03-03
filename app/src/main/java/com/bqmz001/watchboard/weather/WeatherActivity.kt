@@ -25,7 +25,7 @@ class WeatherActivity : AppCompatActivity() {
         setContentView(binding.root)
         val nowTime = DateTime.now()
 
-        binding.tvPosition.setText(Hawk.get("qweather-city",""))
+        binding.tvPosition.setText(Hawk.get("qweather-city", ""))
 
         binding.ivBack.setOnClickListener { finish() }
         binding.tv24hourWeather.setOnClickListener {
@@ -47,6 +47,13 @@ class WeatherActivity : AppCompatActivity() {
 
         val nowWeather = Hawk.get<WeatherNowBean>("now-weather")
         val nowWeatherTime = Hawk.get<Long>("now-weather-time")
+        val advancedEndpoint = Hawk.get<Boolean>("advanced", false)
+
+        if (!advancedEndpoint) {
+            binding.cvMore.visibility = View.INVISIBLE
+        } else {
+            binding.cvMore.visibility = View.VISIBLE
+        }
 
         val interval = Hawk.get<Int>("refresh")
         if (interval == null || interval == 0) {
@@ -59,6 +66,8 @@ class WeatherActivity : AppCompatActivity() {
             binding.tvWet.setText("${nowWeather.now.humidity}\n%")
             binding.tvRain.setText("${nowWeather.now.precip}\nmm")
             binding.tvPressure.setText("${nowWeather.now.pressure}\nhPa")
+            binding.tvVis.setText("${nowWeather.now.vis}\nkm")
+            binding.tvUpdateTime.setText("更新时间:${DateTime(nowWeatherTime).toString("yyyy-MM-dd HH:mm")}")
             val sharp = Sharp.loadAsset(assets, "weather_icons/${nowWeather.now.icon}.svg")
             sharp.setOnElementListener(object : OnSvgElementListener {
                 override fun onSvgStart(p0: Canvas, p1: RectF?) {
@@ -96,23 +105,7 @@ class WeatherActivity : AppCompatActivity() {
 
         } else {
             Toast.makeText(this, "数据错误或数据过期,请检查API ID和KEY是否配置正确或检查网络配置", Toast.LENGTH_LONG).show()
-            binding.ivWeatherIcon.visibility = View.GONE
-            binding.tvTempFeel.visibility = View.GONE
-            binding.tvSplit.visibility = View.GONE
-            binding.tvTempActualHint.visibility = View.GONE
-            binding.tvTempActual.visibility = View.GONE
-            binding.tvTempFeel.visibility = View.GONE
-            binding.tvTempFeelHint.visibility = View.GONE
-            binding.tvWind.visibility = View.GONE
-            binding.tvWet.visibility = View.GONE
-            binding.tvRain.visibility = View.GONE
-            binding.tvPressure.visibility = View.GONE
-            binding.tvWindHint.visibility = View.GONE
-            binding.tvWetHint.visibility = View.GONE
-            binding.tvRainHint.visibility = View.GONE
-            binding.tvPressureHint.visibility = View.GONE
-            binding.tv24hourWeather.visibility = View.GONE
-            binding.tv24hourWeather.visibility = View.GONE
+            binding.hsvContainer.visibility = View.GONE
 
         }
 
