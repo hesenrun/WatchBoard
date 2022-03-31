@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.*
 import com.bqmz001.watchboard.R
 import androidx.core.content.ContextCompat.startActivity
+import com.lxj.xpopup.XPopup
 import com.orhanobut.hawk.Hawk
 
 
@@ -39,7 +40,9 @@ class SettingsActivity : AppCompatActivity() {
             val weather_api_key = findPreference<EditTextPreference>("weather_api_key")
             val weather_location = findPreference<Preference>("weather_location")
             val weather_refresh = findPreference<ListPreference>("weather_refresh")
-            val weather_advanced=findPreference<SwitchPreference>("weather_advanced")
+            val weather_advanced = findPreference<SwitchPreference>("weather_advanced")
+            val alarm_longest_time = findPreference<ListPreference>("alarm_longest_time")
+            val alarm_volume=findPreference<Preference>("alarm_volume")
             val system_settings = findPreference<Preference>("system_settings")
             val dark = findPreference<SwitchPreference>("dark")
 
@@ -68,11 +71,25 @@ class SettingsActivity : AppCompatActivity() {
                 Hawk.put("refresh", newValue.toString().toInt())
                 true
             }
+            alarm_longest_time!!.setOnPreferenceChangeListener { preference, newValue ->
+                Hawk.put("alarm_long", newValue.toString().toInt())
+                if(newValue.toString().toInt()==0){
+                    Toast.makeText(requireContext(), "请注意扰民问题", Toast.LENGTH_LONG).show();
+                }
+                true
+            }
+            alarm_volume!!.setOnPreferenceClickListener {
+                XPopup.Builder(requireContext())
+                    .isDestroyOnDismiss(true)
+                    .asCustom(AlarmVolumeDialog(requireContext()))
+                    .show()
+                true
+            }
             system_settings!!.setOnPreferenceClickListener {
                 requireContext().startActivity(Intent(Settings.ACTION_SETTINGS))
                 true
             }
-            weather_advanced!!.setOnPreferenceChangeListener{prefrence,newValue->
+            weather_advanced!!.setOnPreferenceChangeListener { prefrence, newValue ->
                 Hawk.put("advanced", newValue)
                 true
             }

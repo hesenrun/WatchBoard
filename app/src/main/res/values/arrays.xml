@@ -18,4 +18,22 @@
         <item>3600000</item>
         <item>7200000</item>
     </string-array>
+
+    <!-- Reply Preference -->
+    <string-array name="alarm_entries">
+        <item>5分钟</item>
+        <item>10分钟</item>
+        <item>15分钟</item>
+        <item>20分钟</item>
+        <item>30分钟</item>
+        <item>无限（请注意扰民问题）</item>
+    </string-array>
+    <string-array name="alarm_values">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>35</item>
+        <item>0</item>
+    </string-array>
 </resources>

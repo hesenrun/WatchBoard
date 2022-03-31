@@ -1,25 +1,36 @@
 package com.bqmz001.watchboard.alarm
 
+import android.annotation.SuppressLint
 import android.content.*
 import android.media.MediaPlayer
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import com.bqmz001.watchboard.R
 import com.bqmz001.watchboard.databinding.ActivityAlarmRingBinding
 import com.bqmz001.watchboard.refreshAlarm
+import com.orhanobut.hawk.Hawk
 import org.joda.time.DateTime
 import org.litepal.LitePal
 
 class AlarmRingActivity : AppCompatActivity() {
     lateinit var binding: ActivityAlarmRingBinding
     lateinit var receiver: TimeReceiver
+    lateinit var mediaPlayer: MediaPlayer
+
+    companion object {
+        var plusMinute: Int = 0
+        var maxMinute: Int = 0
+    }
+
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAlarmRingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        maxMinute = Hawk.get("alarm_long", 10)
         val alarm =
             LitePal.where("uuid = ?", intent.getStringExtra("uuid")).find(AlarmBean::class.java)[0]
         binding.tvAlarmTime.setText(
@@ -42,7 +53,7 @@ class AlarmRingActivity : AppCompatActivity() {
         }
         refreshAlarm(this)
         turnScreenOn()
-        val mediaPlayer = MediaPlayer.create(this, R.raw.alarm_ring)
+        mediaPlayer = MediaPlayer.create(this, R.raw.alarm_ring)
         mediaPlayer.isLooping = true
         mediaPlayer.start()
 
@@ -57,6 +68,7 @@ class AlarmRingActivity : AppCompatActivity() {
             mediaPlayer.pause()
             mediaPlayer.release()
             unregisterReceiver(receiver)
+            Toast.makeText(applicationContext, "在闹钟响起${plusMinute}分钟后您手动关闭了闹钟", Toast.LENGTH_LONG).show()
             finish()
         }
 
@@ -71,6 +83,7 @@ class AlarmRingActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     fun refreshTime() {
         val dateTime = DateTime.now()
         binding.tvNowTime.setText(
@@ -81,6 +94,22 @@ class AlarmRingActivity : AppCompatActivity() {
                 )
             }:${String.format("%02d", dateTime.minuteOfHour)}"
         )
+        if (!binding.tvNowTime.text.equals(binding.tvAlarmTime.text)) {
+            plusMinute++
+        }
+        if (plusMinute<=99){
+            binding.tvPlusTime.setText("+${plusMinute}m")
+        }else{
+            Toast.makeText(this, "这到底是叫不醒了还是家里没人？", Toast.LENGTH_LONG).show()
+            binding.tvPlusTime.setText("+??m")
+        }
+        if (maxMinute != 0 && plusMinute >= maxMinute) {
+            mediaPlayer.pause()
+            mediaPlayer.release()
+            unregisterReceiver(receiver)
+            Toast.makeText(applicationContext, "在闹钟响起${plusMinute}分钟后被系统自动关闭闹钟", Toast.LENGTH_LONG).show()
+            finish()
+        }
     }
 
     fun turnScreenOn() {

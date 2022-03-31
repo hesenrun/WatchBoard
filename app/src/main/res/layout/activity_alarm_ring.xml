@@ -56,11 +56,20 @@
         android:id="@+id/tv_now_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="64sp"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_plus_time"
         app:layout_constraintEnd_toEndOf="@+id/tv_alarm_time"
+        app:layout_constraintTop_toTopOf="@+id/tv_plus_time"
+        tools:text="16:00" />
+
+    <TextView
+        android:id="@+id/tv_plus_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="56sp"
         app:layout_constraintStart_toStartOf="@+id/tv_alarm_time"
         app:layout_constraintTop_toBottomOf="@+id/tv_alarm_time"
-        tools:text="16:00" />
+        tools:text="+99m" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_finish"
