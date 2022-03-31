@@ -28,6 +28,7 @@ class AlarmRingActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        plusMinute=0
         binding = ActivityAlarmRingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         maxMinute = Hawk.get("alarm_long", 10)
@@ -69,6 +70,7 @@ class AlarmRingActivity : AppCompatActivity() {
             mediaPlayer.release()
             unregisterReceiver(receiver)
             Toast.makeText(applicationContext, "在闹钟响起${plusMinute}分钟后您手动关闭了闹钟", Toast.LENGTH_LONG).show()
+            plusMinute=0
             finish()
         }
 
