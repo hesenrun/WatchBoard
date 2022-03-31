@@ -103,11 +103,12 @@ class AlarmRingActivity : AppCompatActivity() {
             Toast.makeText(this, "这到底是叫不醒了还是家里没人？", Toast.LENGTH_LONG).show()
             binding.tvPlusTime.setText("+??m")
         }
-        if (maxMinute != 0 && plusMinute >= maxMinute) {
+        if (maxMinute != 0 && plusMinute > maxMinute) {
             mediaPlayer.pause()
             mediaPlayer.release()
             unregisterReceiver(receiver)
-            Toast.makeText(applicationContext, "在闹钟响起${plusMinute}分钟后被系统自动关闭闹钟", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "在闹钟响起${plusMinute-1}分钟后被系统自动关闭闹钟", Toast.LENGTH_LONG).show()
+            plusMinute=0
             finish()
         }
     }
