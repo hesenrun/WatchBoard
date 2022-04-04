@@ -28,7 +28,7 @@ class AlarmRingActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        plusMinute=0
+        plusMinute = 0
         binding = ActivityAlarmRingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         maxMinute = Hawk.get("alarm_long", 10)
@@ -69,8 +69,10 @@ class AlarmRingActivity : AppCompatActivity() {
             mediaPlayer.pause()
             mediaPlayer.release()
             unregisterReceiver(receiver)
-            Toast.makeText(applicationContext, "在闹钟响起${plusMinute}分钟后您手动关闭了闹钟", Toast.LENGTH_LONG).show()
-            plusMinute=0
+            Toast.makeText(applicationContext, "在闹钟响起${plusMinute-1
+            }分钟后您手动关闭了闹钟", Toast.LENGTH_LONG)
+                .show()
+            plusMinute = 0
             finish()
         }
 
@@ -96,21 +98,25 @@ class AlarmRingActivity : AppCompatActivity() {
                 )
             }:${String.format("%02d", dateTime.minuteOfHour)}"
         )
-        if (!binding.tvNowTime.text.equals(binding.tvAlarmTime.text)) {
-            plusMinute++
-        }
-        if (plusMinute<=99){
-            binding.tvPlusTime.setText("+${plusMinute}m")
-        }else{
+
+        plusMinute++
+
+        if (plusMinute <= 99) {
+            binding.tvPlusTime.setText("+${plusMinute - 1}m")
+        } else {
             Toast.makeText(this, "这到底是叫不醒了还是家里没人？", Toast.LENGTH_LONG).show()
             binding.tvPlusTime.setText("+??m")
         }
-        if (maxMinute != 0 && plusMinute > maxMinute) {
+        if (maxMinute != 0 && plusMinute > maxMinute+2) {
             mediaPlayer.pause()
             mediaPlayer.release()
             unregisterReceiver(receiver)
-            Toast.makeText(applicationContext, "在闹钟响起${plusMinute-1}分钟后被系统自动关闭闹钟", Toast.LENGTH_LONG).show()
-            plusMinute=0
+            Toast.makeText(
+                applicationContext,
+                "在闹钟响起${plusMinute - 2}分钟后被系统自动关闭闹钟",
+                Toast.LENGTH_LONG
+            ).show()
+            plusMinute = 0
             finish()
         }
     }
