@@ -101,7 +101,7 @@ class AlarmRingActivity : AppCompatActivity() {
 
         plusMinute++
 
-        if (plusMinute <= 99) {
+        if (plusMinute <= 100) {
             binding.tvPlusTime.setText("+${plusMinute - 1}m")
         } else {
             Toast.makeText(this, "这到底是叫不醒了还是家里没人？", Toast.LENGTH_LONG).show()
